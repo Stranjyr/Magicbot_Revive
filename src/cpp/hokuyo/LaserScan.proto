@@ -1,0 +1,32 @@
+package LaserScan;
+message LaserConfig {
+	//! Start angle for the laser scan [rad].  0 is forward and angles are measured clockwise when viewing hokuyo from the top.
+    required float min_angle;
+    //! Stop angle for the laser scan [rad].   0 is forward and angles are measured clockwise when viewing hokuyo from the top.
+    required float max_angle;
+    //! Scan resolution [rad].
+    required float ang_increment;
+    //! Scan resoltuion [s]
+    required float time_increment;
+    //! Time between scans
+    required float scan_time;
+    //! Minimum range [m]
+    required float min_range;
+    //! Maximum range [m]
+    float max_range;
+    //! Range Resolution [m]
+    required float range_res;
+}
+
+message LaserScan {
+	//! Array of ranges
+    required std::vector<float> ranges;
+    //! Array of intensities
+    required std::vector<float> intensities;
+    //! Self reported time stamp in nanoseconds
+    required uint64_t self_time_stamp;
+    //! System time when first range was measured in nanoseconds
+    required uint64_t system_time_stamp;
+    //! Configuration of scan
+    required LaserConfig config;
+}
